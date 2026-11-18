@@ -1,0 +1,227 @@
+:root {
+  font-family: 'Segoe UI', 'Microsoft YaHei UI', 'PingFang SC', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
+button,
+input,
+select {
+  min-width: 0;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+button svg,
+label > svg {
+  flex: none;
+}
+code,
+pre,
+kbd {
+  font-family: var(--mono);
+}
+code {
+  overflow-wrap: anywhere;
+}
+
+.workspace {
+  --backdrop: #f4f6f9;
+  --surface: #fff;
+  --surface-alt: #f5f7fa;
+  --surface-hover: #edf2fa;
+  --ink: #111a2a;
+  --muted: #536176;
+  --border: #d7dfea;
+  --border-strong: #c5cfde;
+  --panel-shadow: 0 1px 2px #1d355b0a, 0 4px 16px #1d355b08;
+  --accent: #2452ee;
+  --accent-bold: #1e48d5;
+  --selected: #dce6ff;
+  --success: #17803b;
+  --error: #a92333;
+  --error-fill: #fff0f1;
+  --success-fill: #e9f8ef;
+  --syntax-property: #a71927;
+  --syntax-string: #1647da;
+  --syntax-number: #15703d;
+  --syntax-boolean: #7e2ad6;
+  --syntax-null: #735a90;
+  --mono: 'Cascadia Code', Consolas, 'SFMono-Regular', 'Microsoft YaHei UI', monospace;
+  color: var(--ink);
+  background: var(--backdrop);
+  color-scheme: light;
+}
+
+.workspace[data-theme='dark'] {
+  --backdrop: #141a25;
+  --surface: #1b2331;
+  --surface-alt: #202a3a;
+  --surface-hover: #27354a;
+  --ink: #e7edf9;
+  --muted: #aab8ce;
+  --border: #343f53;
+  --border-strong: #4a5870;
+  --panel-shadow: 0 2px 14px #080e1a4d;
+  --accent: #6f92ff;
+  --accent-bold: #4f75f3;
+  --selected: #304776;
+  --success: #79dca0;
+  --error: #ff9ba9;
+  --error-fill: #402632;
+  --success-fill: #183c34;
+  --syntax-property: #f7a1aa;
+  --syntax-string: #a2bbff;
+  --syntax-number: #79d7a6;
+  --syntax-boolean: #d3aafc;
+  --syntax-null: #bdb0e8;
+  color-scheme: dark;
+}
+
+.syntax-property {
+  color: var(--syntax-property);
+}
+.syntax-string {
+  color: var(--syntax-string);
+}
+.syntax-number {
+  color: var(--syntax-number);
+}
+.syntax-boolean {
+  color: var(--syntax-boolean);
+}
+.syntax-null {
+  color: var(--syntax-null);
+}
+.muted {
+  color: var(--muted);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 13px;
+  min-height: 37px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+.button:hover:not(:disabled) {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+.button.primary {
+  color: #fff;
+  background: linear-gradient(155deg, #3462f7, #2449db);
+  border-color: #2d55e9;
+  box-shadow: inset 0 1px 0 #ffffff24;
+}
+.button.primary:hover:not(:disabled) {
+  background: #2046d8;
+  border-color: #2046d8;
+}
+.button.quiet {
+  border-color: transparent;
+  background: transparent;
+  padding: 0 8px;
+  min-height: 34px;
+}
+.button:disabled {
+  opacity: 0.48;
+}
+
+input,
+select {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  padding: 7px 10px;
+}
+input::placeholder {
+  color: var(--muted);
+}
+select {
+  cursor: pointer;
+}
+
+.empty-state {
+  color: var(--muted);
+  margin: auto;
+  padding: 24px;
+  text-align: center;
+}
+.empty-state strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+.empty-state p {
+  margin: 8px 0 0;
+}
+
+.dialog {
+  width: min(540px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: 20px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 14px 50px #0f1c3e29;
+}
+.dialog::backdrop {
+  background: #111a3666;
+}
+.dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.dialog-heading h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.dialog-note {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,265 @@
+.graph-view {
+  --graph-canvas: #f6f8fc;
+  --graph-dot: #b8c6da;
+  --graph-link: #869bb8;
+  --graph-object: #3764bd;
+  --graph-array: #0b786b;
+  --graph-shadow: 0 3px 10px #182f5210;
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: var(--graph-canvas);
+}
+
+[data-theme='dark'] .graph-view {
+  --graph-canvas: #151d2b;
+  --graph-dot: #3b4a61;
+  --graph-link: #758bab;
+  --graph-object: #99b8ff;
+  --graph-array: #73d6c4;
+  --graph-shadow: 0 3px 10px #080d1866;
+}
+
+.graph-view .react-flow__edge-path {
+  stroke: var(--graph-link);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.graph-view .graph-edge-active .react-flow__edge-path {
+  stroke: var(--accent);
+  stroke-width: 2.1;
+}
+
+.json-graph-card {
+  --card-kind: var(--graph-object);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: var(--graph-shadow);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.json-graph-card.is-array {
+  --card-kind: var(--graph-array);
+}
+
+.json-graph-card.is-active {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 2px var(--selected),
+    var(--graph-shadow);
+}
+
+.graph-card-header,
+.graph-row-value {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.graph-card-header {
+  gap: 8px;
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--border);
+  border-radius: 8px 8px 0 0;
+  background: color-mix(in srgb, var(--card-kind) 7%, var(--surface));
+  font-weight: 700;
+}
+
+.graph-card-header:hover,
+.graph-card-header[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--card-kind) 13%, var(--surface));
+}
+
+.graph-card-icon {
+  color: var(--card-kind);
+}
+.graph-card-label,
+.graph-row-label,
+.graph-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.graph-card-count {
+  flex: none;
+  margin-left: auto;
+  font-family: 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--card-kind);
+  white-space: nowrap;
+}
+
+.graph-card-row {
+  display: flex;
+  height: 27px;
+  position: relative;
+}
+
+.graph-card-row + .graph-card-row {
+  border-top: 1px solid var(--border);
+}
+.graph-card-row:last-child {
+  border-radius: 0 0 8px 8px;
+}
+.graph-card-row:hover {
+  background: var(--surface-hover);
+}
+.graph-card-row.is-active {
+  background: var(--selected);
+}
+
+.graph-row-value {
+  flex: 1;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+}
+.graph-card-header:focus-visible,
+.graph-row-value:focus-visible {
+  outline-offset: -2px;
+}
+.graph-row-label {
+  flex: 0 0 auto;
+  max-width: 55%;
+  font-weight: 650;
+}
+.is-array .graph-row-label {
+  color: var(--card-kind);
+  font-weight: 600;
+}
+.graph-value {
+  flex: 0 1 auto;
+  text-align: right;
+}
+.graph-value.syntax-array,
+.graph-value.syntax-object {
+  color: var(--muted);
+}
+
+.graph-branch-toggle,
+.graph-card-pagination button,
+.graph-controls button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+}
+
+.graph-branch-toggle {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  align-self: center;
+  margin-right: 7px;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.graph-branch-toggle:hover,
+.graph-card-pagination button:hover:not(:disabled),
+.graph-controls button:hover:not(:disabled) {
+  color: var(--accent);
+  background: var(--surface-hover);
+}
+
+.graph-view .react-flow__handle.graph-port {
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--surface);
+  background: var(--graph-link);
+  pointer-events: none;
+}
+.graph-view .is-active .graph-port {
+  background: var(--accent);
+}
+.graph-view .graph-port-in {
+  left: -1px;
+}
+.graph-view .graph-port-out {
+  right: -1px;
+}
+
+.graph-card-empty {
+  height: 27px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+.graph-card-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding: 0 7px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.graph-card-pagination button {
+  width: 26px;
+  height: 24px;
+  border-radius: 4px;
+  padding: 0;
+}
+.graph-card-pagination button:disabled,
+.graph-controls button:disabled {
+  opacity: 0.45;
+}
+
+.graph-view .graph-controls {
+  display: flex;
+  align-items: center;
+  margin: 12px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--graph-shadow);
+}
+.graph-controls button {
+  width: 32px;
+  height: 30px;
+  padding: 0;
+  border-radius: 5px;
+}
+.graph-controls button:last-child {
+  border-left: 1px solid var(--border);
+  border-radius: 0 5px 5px 0;
+}
+.graph-scale {
+  min-width: 43px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.graph-view .graph-note {
+  max-width: calc(100% - 24px);
+  margin: 12px;
+  padding: 6px 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+}
